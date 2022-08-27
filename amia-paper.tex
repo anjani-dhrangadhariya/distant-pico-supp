@@ -1,0 +1,314 @@
+\documentclass[10.7pt,]{article}
+
+\usepackage[letterpaper, margin=2.54cm, top=2.54cm]{geometry}
+\usepackage[super,comma,sort&compress]{natbib}
+\usepackage{lmodern}
+\usepackage{authblk} % To add affiliations to authors
+\usepackage{amssymb,amsmath}
+\usepackage{wrapfig}
+\usepackage{graphicx,grffile}
+\usepackage[labelfont=bf,labelsep=period]{caption}
+\usepackage{ifxetex,ifluatex}
+%\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Arial Narrow}
+    \setsansfont[]{Century Gothic}
+    \setmonofont[Mapping=tex-ansi]{Consolas}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+	\usepackage{microtype}
+	\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+\usepackage{lipsum} % for dummy text only REMOVE
+
+\newtheorem{exm}{Example}
+
+
+%==============================
+% Customization to make the output PDF 
+% look similar to the MS Word version
+%==============================
+% To prevent hyphenation
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% To set the sections font size
+\usepackage{sectsty}
+\allsectionsfont{\fontsize{11}{11}\selectfont}
+\sectionfont{\fontsize{14}{14}\selectfont}
+\subsectionfont{\bfseries\fontsize{13}{13}\selectfont}
+\subsubsectionfont{\bfseries\fontsize{11}{11}\selectfont}
+%\subsubsectionfont{\normalfont}
+
+% Spacing
+\usepackage{setspace}
+\usepackage{longtable}
+
+\usepackage{xcolor}
+
+% No new line after subsubsection
+\makeatletter
+%\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+%	{-3.25ex\@plus -1ex \@minus -.2ex}%
+%    {-1.5ex \@plus -.2ex}% Formerly 1.5ex \@plus .2ex
+%    {\normalfont}}
+%\makeatother
+
+\makeatletter % Reference list option change
+\renewcommand\@biblabel[1]{#1.} % from [1] to 1
+\makeatother %
+
+% To set the doc title font
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}{\LARGE}{\bfseries\fontsize{15}{16}\selectfont}{}{}
+\makeatother
+
+% No page numbering
+\pagenumbering{gobble}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+%==============================
+\usepackage{hyperref}
+\hypersetup{
+	unicode=true,
+	pdftitle={My Cool Title Here},
+	pdfauthor={Author One, Author Two, Author Three},
+	pdfkeywords={keyword1, keyword2},
+	pdfborder={0 0 0},
+	breaklinks=true
+}
+\urlstyle{same}  % don't use monospace font for urls
+
+% Keywords command
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{Key words---} #1
+}
+%==============================
+
+% reduce space between title and begining of page
+\title{\vspace{-2em} Supplementary material for \\ Not So Weak-PICO: Leveraging weak supervision for Participants, Interventions, and Outcomes extraction for systematic review automation}
+\date{\vspace{-5ex}}
+\author[ ] {
+    % Authors
+    \bf\fontsize{13}{14}\selectfont
+    Anjani Dhrangadhariya,\textsuperscript{\rm 1, 2}
+    Henning M\"uller \textsuperscript{\rm 1, 2}
+}
+\affil[1]{Institute of Business Information Systems, University of Applied Sciences Western Switzerland (HES-SO Valais-Wallis), Sierre, Switzerland}
+\affil[2]{Department of Computer Science, University of Geneva (UNIGE), Geneva, Switzerland}
+\affil[*]{Corresponding author: Anjani Dhrangadhariya, Institute of Business Information Systems, University of Applied Sciences Western Switzerland (HES-SO Valais-Wallis), Sierre, Switzerland; anjani.dhrangadhariya@hevs.ch}
+%==============================
+\begin{document}
+\maketitle
+\vspace{2em} %separation between the affiliations and abstract
+%==============================
+\doublespacing
+%==============================
+%
+%
+%
+%==============================
+\section{Annotation guidelines: Study type and design entity}\label{lss}
+%==============================
+%
+In the study type annotation, we intended to capture the following fine-grained information about the study type and design.
+
+\begin{itemize}
+    \item Whether the study participants were randomly allocated or not.
+    \item Whether the study in question was a clinical trial, a case-control study or a clinical trial protocol.
+    \item Preliminary information about masking should be also be included as in whether the study was single-blind, double-blind, triple-blind or quadruple blind. Do not include the information about how the masking was performed.
+    \item Mark if a study was unblinded or open-label.
+    \item Mark whether the study was a (placebo) controlled study i.e. either a control intervention or a placebo was used. If study is not described as a placebo controlled study but there is a mention of control intervention or control group, mark the generic terms.
+    \item Mark whether a study was prospective or retrospective.
+    \item If the study was performed at a single center mark information about mono-centric (mono-center) or multi-centric (multi-center).
+    \item Clinical trials involving new drugs are commonly classified into five phases. Mark information about the trial phase.
+    \item Information about whether a trial was non-inferiority, superiority, or equivalence trial
+    \item Include other attributes like whether a study was cross-over, non-cross over or parallel, cluster or factorial trial design.
+    \item Other information describing the trial design should be marked example pilot clinical trial, feasibility trial, trial protocol.
+\end{itemize}
+%
+%
+%
+%==============================
+\section{UMLS sources to PICO targets}\label{lss}
+%==============================
+%
+\begin{longtable}{|l|p{0.3cm}|p{0.3cm}|p{0.3cm}|p{7.9cm}|}
+    \hline
+        Semantc Type & P & I & O & Reason for choosing \\ \hline
+        Mental or Behavioral Dysfunction & 1 & -1 & 1 & Concepts under this semantic group can be participant (condition) dysfunction or an outcome endpoint (clinical manifestation) that could be measured. \\ \hline
+        Sign or Symptom & 1 & -1 & 1 & Concepts under this semantic group could be the improvements in participant symptoms being measured as an outcome. \\ \hline
+        Age Group & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant age but are clearly not intervention or outcome concepts. \\ \hline
+        Disease or Syndrome & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Injury or Poisoning & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Neoplastic Process & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Patient or Disabled Group & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Population Group & 1 & -1 & -1 & Concepts under this semantic group can include writing variations for participant gender, sex, social status and other characteristics. \\ \hline
+        Acquired Abnormality & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Anatomical Abnormality & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Congenital Abnormality & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Occupational Activity & 1 & -1 & -1 & Concepts under this semantic group could describe other relevant characteristics of the RCT participants. \\ \hline
+        Professional or Occupational Group & 1 & -1 & -1 & Concepts under this semantic group could describe other relevant characteristics of the RCT participants. \\ \hline
+        Geographic Area & 1 & -1 & -1 & Concepts in this semantic group can be related to ethnicity of a participant or the geographic location from where participants were enrolled \\ \hline
+        Language & 1 & -1 & -1 & Concepts in this semantic group can be related to participants native language. \\ \hline
+        Group & 1 & -1 & -1 & This semantic group is a parent node to all the other groups added under the participant class. \\ \hline
+        Family Group & 1 & -1 & -1 & Could be RCT participant characteristics as well. I abstain on it because I am not sure what other kind of concepts could be encompass \\ \hline
+        Group Attribute & 1 & -1 & -1 & Concepts in this semantic group can describe RCT participant groups like pregnant women, smokers, addicts, etc. \\ \hline
+        Pathologic Function & 1 & -1 & -1 & Concepts under this semantic group are relevant for participant condition but are clearly not intervention or outcome concepts. \\ \hline
+        Body Location or Region & 0 & 0 & 0 & ~ \\ \hline
+        Body Part, Organ, or Organ Component & 0 & 0 & 0 & ~ \\ \hline
+        Body Space or Junction & 0 & 0 & 0 & ~ \\ \hline
+        Cell & 0 & 0 & 0 & ~ \\ \hline
+        Cell Component & 0 & 0 & 0 & ~ \\ \hline
+        Tissue & 0 & 0 & 0 & ~ \\ \hline
+        Embryonic Structure & 0 & 0 & 0 & ~ \\ \hline
+        Body System & 0 & 0 & 0 & ~ \\ \hline
+        Fully Formed Anatomical Structure & 0 & 0 & 0 & ~ \\ \hline
+        Anatomical Structure & 0 & 0 & 0 & ~ \\ \hline
+        Receptor & 0 & 0 & 0 & ~ \\ \hline
+        Animal & 0 & 0 & 0 & ~ \\ \hline
+        Human & 0 & 0 & 0 & ~ \\ \hline
+        Mammal & 0 & 0 & 0 & ~ \\ \hline
+        Vertebrate & 0 & 0 & 0 & ~ \\ \hline
+        Plant & 0 & 0 & 0 & ~ \\ \hline
+        Research Activity & 0 & 0 & 0 & ~ \\ \hline
+        Carbohydrate Sequence & 0 & 0 & 0 & ~ \\ \hline
+        Classification & 0 & 0 & 0 & ~ \\ \hline
+        Conceptual Entity & 0 & 0 & 0 & ~ \\ \hline
+        Entity & 0 & 0 & 0 & ~ \\ \hline
+        Environmental Effect of Humans & 0 & 0 & 0 & ~ \\ \hline
+        Event & 0 & 0 & 0 & ~ \\ \hline
+        Functional Concept & 0 & 0 & 0 & ~ \\ \hline
+        Human-caused Phenomenon or Process & 0 & 0 & 0 & ~ \\ \hline
+        Idea or Concept & 0 & 0 & 0 & ~ \\ \hline
+        Machine Activity & 0 & 0 & 0 & ~ \\ \hline
+        Manufactured Object & 0 & 0 & 0 & ~ \\ \hline
+        Molecular Function & 0 & 0 & 0 & ~ \\ \hline
+        Molecular Sequence & 0 & 0 & 0 & ~ \\ \hline
+        Natural Phenomenon or Process & 0 & 0 & 0 & ~ \\ \hline
+        Nucleotide Sequence & 0 & 0 & 0 & ~ \\ \hline
+        Organism & 0 & 0 & 0 & ~ \\ \hline
+        Organization & 0 & 0 & 0 & ~ \\ \hline
+        Phenomenon or Process & 0 & 0 & 0 & ~ \\ \hline
+        Physical Object & 0 & 0 & 0 & ~ \\ \hline
+        Spatial Concept & 0 & 0 & 0 & ~ \\ \hline
+        Cell or Molecular Dysfunction & 0 & -1 & 0 & ~ \\ \hline
+        Occupation or Discipline & 0 & -1 & 0 & ~ \\ \hline
+        Organism Attribute & 0 & -1 & 0 & ~ \\ \hline
+        Mental Process & 0 & -1 & 0 & ~ \\ \hline
+        Organ or Tissue Function & 0 & -1 & 0 & ~ \\ \hline
+        Physiologic Function & 0 & -1 & 0 & ~ \\ \hline
+        Body Substance & 0 & -1 & 0 & ~ \\ \hline
+        Organism Function & 0 & -1 & 0 & ~ \\ \hline
+        Social Behavior & 0 & -1 & 0 & ~ \\ \hline
+        Biologic Function & 0 & -1 & 0 & ~ \\ \hline
+        Health Care Related Organization & 0 & 0 & -1 & ~ \\ \hline
+        Inorganic Chemical & 0 & 0 & -1 & ~ \\ \hline
+        Fungus & 0 & -1 & -1 & ~ \\ \hline
+        Virus & 0 & -1 & -1 & ~ \\ \hline
+        Bacterium & 0 & -1 & -1 & ~ \\ \hline
+        Medical Device & -1 & 1 & 1 & The concepts under this semantic group can include medical devices used for diagnostic tests or could be the medical devices used to carry out an intervention. Adding this semantic group could increase recall. \\ \hline
+        Enzyme & -1 & 1 & 1 & Concepts under this semantic group could be a part of enzyme therapy interventions. Enzymes and related proteins are essential biological molecules which could serve as disease biomarkers (outcomes). \\ \hline
+        Hormone & -1 & 1 & 1 & Concepts under this semantic group could be a part of hormone therapy interventions. Hormones could also serve as disease biomarkers (outcomes). \\ \hline
+        Finding & -1 & -1 & 1 & Concepts under this semantic group could be the subjective or objective outcome measures of a participant. For example, Smoking cessation behaviour (CUI:C2586081). \\ \hline
+        Laboratory or Test Result & -1 & -1 & 1 & Concepts under this semantic group could be the subjective or objective outcome measures of a participant. \\ \hline
+        Clinical Attribute & -1 & -1 & 1 & An observable or measurable clinical attribute can be a patient outcome. \\ \hline
+        Qualitative Concept & -1 & -1 & 1 & Concept under this semantic group could include names of measurable or qualitative outcome concepts. \\ \hline
+        Intellectual Product & -1 & -1 & 1 & Concepts under this semantic group could include the official names of outcome measurement scales or questionnaires which also constitute a part of this entity. \\ \hline
+        Quantitative Concept & -1 & -1 & 1 & Concepts under this semantic group could include measurable outcome concepts. \\ \hline
+        Behavior & -1 & -1 & 1 & Behaviour concepts could be measurable or immeasurable RCT outcomes. For example, Treatment Compliance (CUI:C4319828). \\ \hline
+        Individual Behavior & -1 & -1 & 1 & Individual behaviour concepts could be measurable or immeasurable RCT outcomes. For example, Treatment Compliance (CUI:C4319828). \\ \hline
+        Laboratory Procedure & -1 & 0 & 0 & ~ \\ \hline
+        Gene or Genome & -1 & -1 & 0 & ~ \\ \hline
+        Research Device & -1 & -1 & 0 & ~ \\ \hline
+        Indicator, Reagent, or Diagnostic Aid & -1 & -1 & 0 & ~ \\ \hline
+        Cell Function & -1 & -1 & 0 & ~ \\ \hline
+        Biomedical or Dental Material & -1 & 1 & -1 & Concepts under this semantic group are a part of intervention class. \\ \hline
+        Clinical Drug & -1 & 1 & -1 & Concepts under this semantic group are a part of intervention class. \\ \hline
+        Pharmacologic Substance & -1 & 1 & -1 & Concepts under this semantic group are a part of intervention class. \\ \hline
+        Therapeutic or Preventive Procedure & -1 & 1 & -1 & Concepts under this semantic group are a part of intervention class. \\ \hline
+        Vitamin & -1 & 1 & -1 & Concepts under this semantic group could form a part of diet and supplement interventions. \\ \hline
+        Health Care Activity & -1 & 1 & -1 & Concepts under this semantic group are related to activities relating to the care of the patients which can be used either as control intervention or even an intervention in RCTs. \\ \hline
+        Daily or Recreational Activity & -1 & 1 & -1 & Concepts under this semantic group could form a part of physical or behavioral intervention or can be used as placebo controls. \\ \hline
+        Educational Activity & -1 & 1 & -1 & Concepts under this semantic group could form a part of educational or behavioral interventions in the RCTs. \\ \hline
+        Immunologic Factor & -1 & 1 & -1 & Concepts under this semantic group could include vaccine names. \\ \hline
+        Diagnostic Procedure & -1 & 1 & -1 & Concepts under this semantic group could be interventions or diagnosis instruments used in diagnostic RCTs \\ \hline
+        Antibiotic & -1 & 1 & -1 & Concepts under this semantic group are a part of intervention class. \\ \hline
+        Chemical Viewed Functionally & -1 & 1 & -1 & Concepts under this semantic group could be active compounds or IMPs of intervention used in RCT. \\ \hline
+        Biologically Active Substance & -1 & 0 & -1 & ~ \\ \hline
+        Chemical Viewed Structurally & -1 & 0 & -1 & ~ \\ \hline
+        Food & -1 & 0 & -1 & ~ \\ \hline
+        Temporal Concept & -1 & 0 & -1 & ~ \\ \hline
+        Self-help or Relief Organization & -1 & 0 & -1 & ~ \\ \hline
+        Activity & -1 & 0 & -1 & ~ \\ \hline
+        Substance & -1 & 0 & -1 & ~ \\ \hline
+        Chemical & -1 & 0 & -1 & ~ \\ \hline
+        Organic Chemical & -1 & 0 & -1 & ~ \\ \hline
+        Nucleic Acid, Nucleoside, or Nucleotide & -1 & 0 & -1 & ~ \\ \hline
+        Amino Acid, Peptide, or Protein & -1 & 0 & -1 & ~ \\ \hline
+        Fish & -1 & 0 & -1 & ~ \\ \hline
+        Amphibian & -1 & -1 & -1 & ~ \\ \hline
+        Reptile & -1 & -1 & -1 & ~ \\ \hline
+        Regulation or Law & -1 & -1 & -1 & ~ \\ \hline
+        Bird & -1 & -1 & -1 & ~ \\ \hline
+        Eukaryote & -1 & -1 & -1 & ~ \\ \hline
+        Hazardous or Poisonous Substance & -1 & -1 & -1 & ~ \\ \hline
+        Element, Ion, or Isotope & -1 & -1 & -1 & ~ \\ \hline
+        Amino Acid Sequence & -1 & -1 & -1 & ~ \\ \hline
+        Biomedical Occupation or Discipline & -1 & -1 & -1 & ~ \\ \hline
+        Professional Society & -1 & -1 & -1 & ~ \\ \hline
+        Archaeon & -1 & -1 & -1 & ~ \\ \hline
+        Governmental or Regulatory Activity & -1 & -1 & -1 & ~ \\ \hline
+        Genetic Function & -1 & -1 & -1 & ~ \\ \hline
+        Experimental Model of Disease & -1 & -1 & -1 & ~ \\ \hline
+        Drug Delivery Device & -1 & -1 & -1 & ~ \\ \hline
+        Molecular Biology Research Technique & -1 & -1 & -1 & ~ \\ \hline
+\end{longtable}
+%
+%
+%
+%==============================
+\bibliographystyle{vancouver}
+\bibliography{literature}
+%==============================
+
+\end{document}
