@@ -341,23 +341,12 @@ In the study type annotation, we intended to capture the following fine-grained 
 The label model was initialized with a cardinality of two for positive and negative labels for each target class. 
 The parameters used to tune the Snorkel label model are listed in Table~\ref{lm:params}.
 GridSearch was used to tune the parameters restricting the model search to 50/300 hyperparameter space.
-
-All the NER experiments in this article were conducted in PyTorch and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
-All the NER experiments in this article were conducted in PyTorch and the models were trained for ten epochs with a mini-batch size of 10 for training and 6 for evaluation.
-The maximum sequence length was set to 510 because of the transformer's limit.
-For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
-The [CLS] embeddings from the PubMedBERT layer were used as features of the input text.
-PubMedBERT was fine-tuned by not freezing weights during the experiments.
-ReLU was used as the activation function before feeding [CLS] outputs to the linear layer.
-Model training was optimized using AdamW using a learning rate of 5e-5.
-The gradients were clipped to 1.0 to mitigate the problem of exploding gradients.
-Each experiment was carried out on a single Quadro RTX 6000 GPU without data and model parallelization.
 %
 \begin{table}[ht]
 \centering
 \begin{tabular}{|l|l|}
 \hline
-Paramters               & Value                              \\
+Parameters               & Values                              \\
 \hline
 Learning rate           & 0.001, 0.0001                      \\
 L2 regularization       & 0.001, 0.0001                      \\
@@ -372,12 +361,38 @@ Learning rate scheduler & constant                           \\
 % 
 
 
+All the NER experiments in this article were conducted in PyTorch and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
+The maximum sequence length was set to 510 because of the transformer's limit.
+For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
+The [CLS] embeddings from the PubMedBERT layer were used as features of the input text.
+PubMedBERT was fine-tuned by not freezing weights during the experiments.
+ReLU was used as the activation function before feeding [CLS] outputs to the linear layer.
+The gradients were clipped to 1.0 to mitigate the problem of exploding gradients.
+Each experiment was carried out on a single Quadro RTX 6000 GPU without data and model parallelization.
+Further parameters used to train the weakly supervised PubMedBERT model are listed in Table~\ref{ws:params}.
+%
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Parameters               & Values                            \\
+\hline
+Learning rate           & 0.0005                             \\
+Learning rate warmup.   & 0.1.                               \\
+Epsilon                 & 0.00000001                         \\
+Epochs                  & 15                                 \\
+Max sequence length     & 510                                \\
+Optimizer               & AdamW.                             \\
+\hline
+\end{tabular}
+\caption{\label{ws:params} Paramters used to train PubMedBERT-linear model}
+\end{table}
 %
 %
 %
 %==============================
-\bibliographystyle{vancouver}
-\bibliography{literature}
+%\bibliographystyle{vancouver}
+%\bibliography{literature}
 %==============================
 
 \end{document}
