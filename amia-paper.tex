@@ -303,6 +303,75 @@ In the study type annotation, we intended to capture the following fine-grained 
         Drug Delivery Device & -1 & -1 & -1 & ~ \\ \hline
         Molecular Biology Research Technique & -1 & -1 & -1 & ~ \\ \hline
 \end{longtable}
+
+
+\iffalse
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|r|l|r|l|r|}
+    \hline
+    \multicolumn{2}{|c|}{Intervention} & \multicolumn{2}{|c|}{Participant} & \multicolumn{2}{|c|}{Outcome} \\
+    \hline
+    Error type & Count & Error type & Count & Error type & Count \\
+    \hline
+        Description inconsistency & 18 & Remain unannotated & 93 & Scale inconsistency & 85 \\
+        Period/article & 23 & Period/article & 15 & Period/article & 48 \\ 
+        Unmarked control & 59 & Extra info marked & 80 & Extra info marked & 58 \\ 
+        Junk information & 225 & Junk information & 53 & Junk information & 30 \\ 
+        Generic name & 120 & Generic name & 90 & Generic name & 85 \\ 
+        Conjunction connector & 36 & Conjunction connector & 30 & Conjunction connector & 57 \\ 
+        Repeated mention & 220 & Repeated mention & 213 & Repeated mention & 207 \\
+        - & - & - & - & Outcomes not marked & 71 \\ 
+        Total errors & 701 & Total errors & 574 & Total errors & 641 \\ 
+        %Total tokens evaluated & 12960 & Total tokens evaluated & 12960 & Total tokens evaluated & 12960 \\
+        \hline
+        \multicolumn{3}{|l|}{Total tokens evaluated} & \multicolumn{3}{|c|}{12960}\\
+        \hline
+    \end{tabular}
+    \caption{\label{tab:errordist} Error distribution in the analysed tokens of EBM-PICO corpus.}
+\end{table}
+\fi
+%
+%
+%
+%==============================
+\section{Experimental Details}\label{params}
+%==============================
+%
+The label model was initialized with a cardinality of two for positive and negative labels for each target class. 
+The parameters used to tune the Snorkel label model are listed in Table~\ref{lm:params}.
+GridSearch was used to tune the parameters restricting the model search to 50/300 hyperparameter space.
+
+All the NER experiments in this article were conducted in PyTorch and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
+All the NER experiments in this article were conducted in PyTorch and the models were trained for ten epochs with a mini-batch size of 10 for training and 6 for evaluation.
+The maximum sequence length was set to 510 because of the transformer's limit.
+For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
+The [CLS] embeddings from the PubMedBERT layer were used as features of the input text.
+PubMedBERT was fine-tuned by not freezing weights during the experiments.
+ReLU was used as the activation function before feeding [CLS] outputs to the linear layer.
+Model training was optimized using AdamW using a learning rate of 5e-5.
+The gradients were clipped to 1.0 to mitigate the problem of exploding gradients.
+Each experiment was carried out on a single Quadro RTX 6000 GPU without data and model parallelization.
+%
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Paramters               & Value                              \\
+\hline
+Learning rate           & 0.001, 0.0001                      \\
+L2 regularization       & 0.001, 0.0001                      \\
+Epochs                  & 50, 100, 200, 600, 700, 1000, 2000 \\
+Precision               & 0.6, 0.7, 0.8, 0.9                 \\
+Optimizer               & adamax, adam, sgd                  \\
+Learning rate scheduler & constant                           \\
+\hline
+\end{tabular}
+\caption{\label{lm:params} Paramters used to tune Snorkel's label model using GridSearch}
+\end{table}
+% 
+
+
 %
 %
 %
