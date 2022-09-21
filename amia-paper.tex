@@ -144,30 +144,6 @@
 \doublespacing
 %==============================
 %
-%
-%
-%==============================
-\section{Annotation guidelines: Study type and design entity}\label{lss}
-%==============================
-%
-In the study type annotation, we intended to capture the following fine-grained information about the study type and design.
-
-\begin{itemize}
-    \item Whether the study participants were randomly allocated or not.
-    \item Whether the study in question was a clinical trial, a case-control study or a clinical trial protocol.
-    \item Preliminary information about masking should be also be included as in whether the study was single-blind, double-blind, triple-blind or quadruple blind. Do not include the information about how the masking was performed.
-    \item Mark if a study was unblinded or open-label.
-    \item Mark whether the study was a (placebo) controlled study i.e. either a control intervention or a placebo was used. If study is not described as a placebo controlled study but there is a mention of control intervention or control group, mark the generic terms.
-    \item Mark whether a study was prospective or retrospective.
-    \item If the study was performed at a single center mark information about mono-centric (mono-center) or multi-centric (multi-center).
-    \item Clinical trials involving new drugs are commonly classified into five phases. Mark information about the trial phase.
-    \item Information about whether a trial was non-inferiority, superiority, or equivalence trial
-    \item Include other attributes like whether a study was cross-over, non-cross over or parallel, cluster or factorial trial design.
-    \item Other information describing the trial design should be marked example pilot clinical trial, feasibility trial, trial protocol.
-\end{itemize}
-%
-%
-%
 %==============================
 \section{UMLS sources to PICO targets}\label{lss}
 %==============================
@@ -359,8 +335,8 @@ Learning rate scheduler & constant                           \\
 \caption{\label{lm:params} Paramters used to tune Snorkel's label model using GridSearch}
 \end{table}
 % 
-
-
+%
+%
 All the NER experiments in this article were conducted in PyTorch and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
 The maximum sequence length was set to 510 because of the transformer's limit.
 For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
@@ -382,11 +358,19 @@ Learning rate warmup.   & 0.1.                               \\
 Epsilon                 & 0.00000001                         \\
 Epochs                  & 15                                 \\
 Max sequence length     & 510                                \\
-Optimizer               & AdamW.                             \\
+Optimizer               & AdamW                              \\
 \hline
 \end{tabular}
 \caption{\label{ws:params} Paramters used to train PubMedBERT-linear model}
 \end{table}
+%
+%
+%
+%==============================
+\section{Extended Results}\label{extend_res}
+%==============================
+%
+Significance scores
 %
 %
 %
