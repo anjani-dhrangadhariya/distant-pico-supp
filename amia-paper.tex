@@ -145,7 +145,7 @@
 %==============================
 %
 %==============================
-\section{UMLS sources to PICO targets}\label{lss}
+\section{UMLS SOURCES TO PICO TARGETS}\label{lss}
 %==============================
 %
 The UMLS concepts are organized under semantic type categories, an internal semantic ontology provided by UMLS.
@@ -153,8 +153,7 @@ These semantic categories or types were mapped to the PICO targets as defined in
 
 
 \begin{longtable}{|l|p{0.3cm}|p{0.3cm}|p{0.3cm}|p{7.9cm}|}
-    \caption{Table details map the semantic categories listed under the semantic type column to the PICO targets. Note: +1 means the concepts under this type will map matching text spans to a positive token label for that target class. 0 represents the concepts under this semantic type and will map the matching text spans to the negative token label for that target class. -1 stands for the abstains.}
-    \label{tab:source2target}
+
     \endfirsthead
     \endhead
     \hline
@@ -286,12 +285,14 @@ These semantic categories or types were mapped to the PICO targets as defined in
         Experimental Model of Disease & 0 & 0 & 0 & ~ \\ \hline
         Drug Delivery Device & 0 & 0 & 0 & ~ \\ \hline
         Molecular Biology Research Technique & 0 & 0 & 0 & ~ \\ \hline
+    \caption{Table details map the semantic categories listed under the semantic type column to the PICO targets. Note: +1 means the concepts under this type will map matching text spans to a positive token label for that target class. 0 represents the concepts under this semantic type will map the matching text spans to the negative token label for that target class. -1 stands for the abstains.}
+    \label{tab:source2target}
 \end{longtable}
 %
 %
 %
 %==============================
-\section{Experimental Details}\label{params}
+\section{EXPERIMENTAL DETAILS}\label{params}
 %==============================
 %
 The label model was initialized with a cardinality of two for positive and negative labels for each target class. 
@@ -312,12 +313,12 @@ Optimizer               & adamax, adam, sgd                  \\
 Learning rate scheduler & constant                           \\
 \hline
 \end{tabular}
-\caption{\label{lm:params} Paramters used to tune Snorkel's label model using GridSearch}
+\caption{\label{lm:params} Parameters used to tune Snorkel label model using GridSearch}
 \end{table}
 % 
 %
 %
-All the NER experiments in this article were conducted in PyTorch and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
+All the NER experiments in this article were conducted in PyTorch, and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
 The maximum sequence length was set to 510 because of the transformer's limit.
 For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
 The [CLS] embeddings from the PubMedBERT layer were used as features of the input text.
@@ -334,7 +335,7 @@ Further parameters used to train the weakly supervised PubMedBERT model are list
 Parameters               & Values                            \\
 \hline
 Learning rate           & 0.0005                             \\
-Learning rate warmup.   & 0.1.                               \\
+Learning rate warmup.   & 0.1                               \\
 Epsilon                 & 0.00000001                         \\
 Epochs                  & 15                                 \\
 Max sequence length     & 510                                \\
