@@ -295,9 +295,11 @@ These semantic categories or types were mapped to the PICO targets as defined in
 \section{EXPERIMENTAL DETAILS}\label{params}
 %==============================
 %
+All the code was written in Python v3.8.
 The label model was initialized with a cardinality of two for positive and negative labels for each target class. 
+Snorkel v0.9.7 was used to train the label model.
+GridSearch was used to tune the parameters.
 The parameters used to tune the Snorkel label model are listed in Table~\ref{lm:params}.
-GridSearch was used to tune the parameters restricting the model search to 50/300 hyperparameter space.
 %
 \begin{table}[ht]
 \centering
@@ -305,7 +307,7 @@ GridSearch was used to tune the parameters restricting the model search to 50/30
 \hline
 Parameters               & Values                              \\
 \hline
-Learning rate           & 0.-101, 0.0001                      \\
+Learning rate           & 0.001, 0.0001                     \\
 L2 regularization       & 0.001, 0.0001                      \\
 Epochs                  & 50, 100, 200, 600, 700, 1000, 2000 \\
 Precision               & 0.6, 0.7, 0.8, 0.9                 \\
@@ -318,7 +320,7 @@ Learning rate scheduler & constant                           \\
 % 
 %
 %
-All the NER experiments in this article were conducted in PyTorch, and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
+All the NER experiments in this article were conducted in PyTorch v1.9.0, and the models were trained for 15 epochs with a mini-batch size of 10 for training and 6 for evaluation.
 The maximum sequence length was set to 510 because of the transformer's limit.
 For weakly and fully supervised experiments, the EBM-PICO training set was divided, 80\% of the data was used for training and 20\% for development.
 The [CLS] embeddings from the PubMedBERT layer were used as features of the input text.
