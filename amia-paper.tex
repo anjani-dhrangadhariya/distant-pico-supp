@@ -290,7 +290,7 @@ These semantic categories or types were mapped to the PICO targets as defined in
 \end{longtable}
 %
 %==============================
-\section{Non-UMLS SOURCES}\label{lss}
+\section{NON-UMLS SOURCES}\label{lss}
 %==============================
 %
 In this section we provide the Table\ref{nonumls:links} with links to the following non-UMLS labelling sources used in our work: Disease Ontology (DO), Human Phenotype Ontology (HPO), Ontology of Adverse Events (OAE), Chemical entities of biological interest (ChEBI),  Comparative Toxicogenomics Database (CTD) Chemical and Disease subclasses, Gender, Sex, and Sexual Orientation Ontology (GSSO), Chemotherapy Toxicities Ontology (ONTOTOX), Cancer Care: Treatment Outcomes Ontology (CCTOO), Symptoms Ontology (SYMP), Non-pharmacological Interventions Ontology (NPI), Nursing Care Coordination Ontology (NCCO).
@@ -316,6 +316,29 @@ I & NCCO &  \url{https://bioportal.bioontology.org/ontologies/NCCO}  \\
 \hline
 \end{tabular}
 \caption{\label{nonumls:links} The table lists the links for the non-UMLS ontologies used in work along with the PICO (P = Participant, I = Intervention and O = Outcome) target class the ontology was mapped.}
+\end{table}
+%
+%
+%
+%==============================
+\section{LF STATISTICS}\label{lss}
+%==============================
+%
+In Table\ref{tab:lf_stat}, we show the number of LFs for each target class based on the target designated labelling sources.
+%
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|r|r|r|}
+    \hline
+        LF source & Participant & Intervention & Outcome \\ \hline
+        UMLS & 127 & 127 & 127 \\ 
+        non-UMLS & 9 & 8 & 8 \\ 
+        Distant supervision (CTO) & 1 & 2 & 1 \\ 
+        ReGeX/Heuristics & 22 & 3 & 6 \\ 
+        Hand-crafted dictionaries & 1 & 1 & 1 \\ 
+         \hline
+    \end{tabular}
+    \caption{\label{tab:lf_stat} Table enumerates the number of labelling functions for each PICO target class labelling sources.}
 \end{table}
 %
 %
