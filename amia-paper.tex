@@ -402,6 +402,74 @@ Optimizer               & AdamW                              \\
 %
 %
 %==============================
+\section{ERROR RECTIFICATION AND ANALYSIS}\label{params}
+%==============================
+%
+We expound on the error categories and provide examples here.
+Some of our error categories are as identified by Abaho \textit{et al.}, but we add more classes on top of them.
+While they limit their error exploration to the outcomes class, we extend it to the rest.
+An error falls under \textit{repeated mention} if one instance of an entity is marked, but another identical instance of the same entity in the same context is not marked within the abstract. 
+The reason can be the EBM-PICO guidelines flaw where the annotators of fine-grained entity annotation were confined to only annotate within the longer span-level annotation.
+Hence, any annotation error missed by the coarse-grained annotators was continued by the fine-grained annotators.
+
+
+
+An error falls under \textit{remains unannotated} if a token should have been annotated as an entity but was not.
+In the intervention class, a large portion of this category was constituted by the generic mentions of controls (placebo, saline), which were not annotated.
+In the participant class, patient ethnicity and other information like smoking status and pregnancy (marked in the coarse-grained span) were not marked in the fine-grained entity.
+The reason could be that there was no fine-grained class to categorize this information. 
+The annotators missed multiple important outcomes and repeated mentions in the outcome class.
+
+
+
+
+\textit{Conjunction connector} errors are the conjunctions occurring between two semantically separate entities but are falsely marked as entities.
+For example, ``Nausea and vomiting'' are two different outcomes marked as one by annotating the conjunction between them.
+When falsely marked as an entity, punctuation succeeding the entity, an article, or a preposition preceding the entity fall under the \textit{punctuation/article} errors.
+Extraneous tokens marked along with the entity tokens fall under \textit{extra information} category.
+For example, in the phrase ``This trial demonstrated short-term efficacy of smokeless tobacco in combination with'', the annotators had marked ``short-term efficacy of smokeless tobacco'' as an outcome entity, but only ``short-term efficacy'' is an outcome entity.
+In contrast ``smokeless tobacco'' is an intervention entity. 
+In the intervention class, the annotation guidelines mentioned not annotating any part of the text that did not mention the intervention name.
+The annotators often marked extraneous information like intervention dosage, frequency, route of administration and information about the intervention administrator.
+
+
+
+
+A generic reference is a co-reference of an entity mentioned using different or similar (but not identical) words. 
+A generic reference of an entity (and its repeated mention) in the same abstract was several times left unmarked by the annotators constituting a \textit{generic reference} error.
+For example, if the outcome endpoint ``smoking cessation'' was referred to in the same abstract elsewhere as ``quitting smoking'', it was not marked even though it is a reference to the outcome phrase ``smoking cessation''.
+If ``aerobic exercise'' mentioned as ``exercise intervention'' was not marked, this also constitutes a generic reference error.
+For instance, in an RCT, if the ``breast cancer risk counselling'' intervention was referred to as ``risk counselling'', the former was marked, and the latter was missed.
+This error was pronounced specially for the non-pharmaceutical interventions and outcomes.
+
+
+
+
+An \textit{inconsistency} error arises when an entity is fully marked in some abstracts vs when in the other abstracts the same entity is partially marked. 
+For example, if an exercise intervention involved aerobic exercise involving stretching and running, this information (``stretching'', ``running'') was marked in some studies while not in all the other studies.
+In the case of the participant class the sample size sub-grouping information needed to be more consistently marked.
+In another example, participant sample size information was either partially or entirely marked (``59'' vs ``59 subjects'', ``200'' vs ``200 controls'').
+We consider a phrase as a sample size only when the absolute value quantifying sample size follows an appropriate unit (subject, controls, patients, participants, women, men). 
+Only in some cases, when the unit was unavailable, did we consider a standalone number as a sample size participant span.
+In the outcome class, the annotation guidelines marked ``what was measured and how it was measured''. 
+Often, the method used for measuring outcomes was inconsistently marked.
+
+
+
+A \textit{junk} error is a token entirely irrelevant to an entity but is marked as one.
+For example, in the outcomes evaluation, the phrase ``evaluate and compare'' from the larger phrase ``This study aimed to evaluate and compare'' was marked as an outcome entity even though it is not a valid outcome.
+
+
+
+These errors and inconsistencies in the EBM-PICO gold test (and training) set can cause faulty evaluation of the machine learning approaches defying the purpose of the corpus.
+A possible reason behind these inconsistencies in the corpus could be that the annotators had clinical background but lacked an informatics background.
+This situation could undermine the importance of semantic consistency required for annotating such corpora.
+Hiring annotators with a combined knowledge of clinical and informatics domains might improve the manual annotation quality.
+Aggregation of crowd annotations for spans with fuzzy span boundaries might lead to many boundary errors, for example, when two disparate entities are linked by a \textit{conjunction connector}.
+%
+%
+%
+%==============================
 %\bibliographystyle{vancouver}
 %\bibliography{literature}
 %==============================
